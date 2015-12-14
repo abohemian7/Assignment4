@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/zombify/:zombieWords', function(req, res, next) {
 
   if(req.params.zombieWords.length >= 1000){
-    res.sendStatus(414);
+    res.send({ "status": 414, "message": "zombie words are too long" });
   } else{
     var test = translator.zombify(req.params.zombieWords);
     console.log(test);
@@ -25,7 +25,7 @@ router.get('/zombify/:zombieWords', function(req, res, next) {
 router.get('/unzombify/:englishWords', function(req, res, next) {
 
   if(req.params.englishWords.length >= 1000){
-    res.sendStatus(414);
+    res.send({ "status": 414, "message": "english words are too long" });
   } else{
     var test = translator.unzombify(req.params.englishWords);
     console.log(test);
@@ -35,7 +35,7 @@ router.get('/unzombify/:englishWords', function(req, res, next) {
 });
 
 router.get('*', function(req, res){
-  res.sendStatus(404);
+  res.send({ "status": 404, "message": "route not found" });
 })
 
 
